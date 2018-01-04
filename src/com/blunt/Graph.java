@@ -23,44 +23,66 @@ public class Graph {
 		Node d=new Node("d");
 		Node e=new Node("e");
 		Node f=new Node("f");
+		Node g=new Node("g");
 		//添加边
-		a.addLine(b, 6);
-		a.addLine(c, 3);
-		
-		b.addLine(c, 2);
-		b.addLine(d, 5);
-		
+		a.addLine(b, 12);
+		a.addLine(g, 14);
+		a.addLine(f, 16);
+
+		b.addLine(c, 10);
+		b.addLine(f, 7);
+
 		c.addLine(d, 3);
-		c.addLine(e, 4);
+		c.addLine(e, 5);
+		c.addLine(f, 6);
+
+		d.addLine(e, 4);
+
+		e.addLine(f, 2);
+		e.addLine(g, 8);
+
+		f.addLine(g, 9);
 		
-		d.addLine(f, 3);
-		d.addLine(e, 2);
-		
-		e.addLine(f, 5);
 		Graph graph=new Graph(new Node[] {a,b,c,d,e,f});
-		graph.caculate(a, f);
+		graph.caculate(d, c);
 	}
 	public void caculate(Node a,Node b) {
-		eachNode(a);
+		a.path.add(a);
+		eachNode(a,b);
+		String path="[";
+		for (Node node : b.path) 
+			path+=node.getName()+",";
+		System.err.println("从节点"+a.getName()+"到节点"+b.getName()+"最短路径为："+path.substring(0,path.length()-1)+"],距离为："+b.getDistance());
 	}
-	
-	private void eachNode(Node node) {
+	/**
+	 * @description: 选取节点迭代遍历子节点
+	 * @author: maxiaodong
+	 */
+	private void eachNode(Node node,Node b) {
+		s.add(node);//加入已遍历节点
+		u.remove(node);
 		if(u.size()==0)
 			return;
-		s.add(node);
-		u.remove(node);
 		Node sort=node.getSortNode(this);
-		eachNode(sort);
+		if(sort==b)
+			return;
+		eachNode(sort,b);
 	}
-	public Integer getDistance() {
+	/**
+	 * @description: 计算当前节点最优路径到某个节点的距离
+	 * @author: maxiaodong
+	 */
+	public Integer getDistance(Vector<Node> path,Node o) {
+		if(path.size()==0)
+			return 0;
 		int d=0;
-		Node f=s.get(0);
+		Node f=path.get(0);
 		Node se=null;
-		for (int i = 1; i < this.s.size(); i++) {
-			se=s.get(i);
+		for (int i = 1; i < path.size(); i++) {
+			se=path.get(i);
 			d+=f.siblings.get(se);
-			f=s.get(i);
+			f=path.get(i);
 		}
-		return d;
+		return f==o?0:d+f.siblings.get(o);
 	}
 }
