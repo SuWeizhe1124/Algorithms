@@ -8,8 +8,8 @@ import java.util.Vector;
  * @date: 2018年1月3日 下午5:55:52
  */
 public class Graph {
-	private Vector<Node> s;//查找过的节点
-	private Vector<Node> u;//带查找节点
+	public Vector<Node> s=new Vector<>();//查找过的节点
+	private Vector<Node> u=new Vector<>();//带查找节点
 	
 	public Graph(Node[] nodes) {
 		for (Node node : nodes) 
@@ -41,9 +41,26 @@ public class Graph {
 		graph.caculate(a, f);
 	}
 	public void caculate(Node a,Node b) {
-		s.add(a);
-		u.remove(a);
-		for (Node node : a.siblings.keySet()) {
+		eachNode(a);
+	}
+	
+	private void eachNode(Node node) {
+		if(u.size()==0)
+			return;
+		s.add(node);
+		u.remove(node);
+		Node sort=node.getSortNode(this);
+		eachNode(sort);
+	}
+	public Integer getDistance() {
+		int d=0;
+		Node f=s.get(0);
+		Node se=null;
+		for (int i = 1; i < this.s.size(); i++) {
+			se=s.get(i);
+			d+=f.siblings.get(se);
+			f=s.get(i);
 		}
+		return d;
 	}
 }
