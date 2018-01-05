@@ -46,6 +46,10 @@ public class Graph {
 		Graph graph=new Graph(new Node[] {a,b,c,d,e,f});
 		graph.caculate(d, c);
 	}
+	/**
+	 * @description: 计算俩节点之间的最短路径
+	 * @author: maxiaodong
+	 */
 	public void caculate(Node a,Node b) {
 		a.path.add(a);
 		eachNode(a,b);
