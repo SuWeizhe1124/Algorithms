@@ -1,11 +1,11 @@
-package com.blunt;
+package com.rick.dijkstra;
 
 import java.util.Vector;
 
 /**
- * @Description: 无向图
+ * @Description: 有向图
  * @author: maxiaodong     
- * @date: 2018年1月3日 下午5:55:52
+ * @date: 2018年3月7日 上午12:56:57
  */
 public class Graph {
 	public Vector<Node> s=new Vector<>();//查找过的节点
