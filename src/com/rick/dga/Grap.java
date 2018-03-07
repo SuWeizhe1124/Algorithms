@@ -18,12 +18,12 @@ public class Grap {
 			u.add(node);	
 	}
 	public static void main(String[] args) {
-		Node r=new Node("r");
-		Node s=new Node("s");
-		Node t=new Node("t");
-		Node x=new Node("x");
-		Node y=new Node("y");
-		Node z=new Node("z");
+		Node r=new Node("r",5);
+		Node s=new Node("s",2);
+		Node t=new Node("t",3);
+		Node x=new Node("x",2);
+		Node y=new Node("y",1);
+		Node z=new Node("z",7);
 		
 
 		r.addLineOut(s);
@@ -54,6 +54,8 @@ public class Grap {
 		
 		Grap grap=new Grap(new Node[] {r,s,t,x,y,z});
 		grap.topologicalSort(grap);
+		grap.findPath(r);
+		
 	}
 	/**
 	 * @description: 进行拓扑排序
@@ -78,5 +80,34 @@ public class Grap {
 				}
 			}
 		}
+	}
+	public void findPath(Node node) {
+//		Vector<Node> v=node.out;
+//		u.remove(node);
+		Queue<Node> queue= new LinkedList<Node>();  
+		queue.add(node);
+		itreator(queue);
+		for (Node node2 : u) {
+			System.out.println(node2.name+":"+node2.distance);
+		}
+		
+	}
+	public void itreator(Queue<Node> queue) {
+		Queue<Node> result= new LinkedList<Node>();   
+		while(!queue.isEmpty()) {
+			Node node=queue.poll();
+			for (Node n : node.out) {
+				result.add(n);//下一层需要遍历的节点
+				if(n.distance==Integer.MAX_VALUE)
+					n.distance=node.weight+n.weight;
+				else if((node.distance+n.weight)>n.distance){
+					n.distance=node.distance+n.weight;
+				}
+			}
+		}
+		if(result.isEmpty())
+			return;
+		itreator(result);
+		
 	}
 }
