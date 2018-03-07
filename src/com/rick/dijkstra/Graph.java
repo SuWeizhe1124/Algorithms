@@ -3,9 +3,9 @@ package com.rick.dijkstra;
 import java.util.Vector;
 
 /**
- * @Description: 有向图
+ * @Description: Dijkstra算法查找最长路径，结论：失败
  * @author: maxiaodong     
- * @date: 2018年3月7日 上午12:56:57
+ * @date: 2018年3月6日 上午12:56:57
  */
 public class Graph {
 	public Vector<Node> s=new Vector<>();//查找过的节点

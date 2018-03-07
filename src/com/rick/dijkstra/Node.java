@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 /**
  * @Description: 节点
  * @author: maxiaodong     
- * @date: 2018年3月7日 上午12:57:17
+ * @date: 2018年3月6日 上午12:57:17
  */
 public class Node {
 	private String name;//节点名称
