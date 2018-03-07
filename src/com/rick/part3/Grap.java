@@ -5,7 +5,7 @@ import java.util.Queue;
 import java.util.Vector;
 
 /**
- * @Description: 有向无环图
+ * @Description: 有向无环图 ps:同文件夹下是本题的拓扑排序图
  * @author: maxiaodong     
  * @date: 2018年3月7日 上午00:59:51
  */
@@ -48,7 +48,7 @@ public class Grap {
 
 		x.addLineIn(s);
 		x.addLineIn(t);
-//		x.addLineOut(s);//加个环
+//		x.addLineOut(s);//加个环做测试
 		x.addLineOut(y);
 		x.addLineOut(z);
 
