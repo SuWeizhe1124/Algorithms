@@ -10,10 +10,20 @@ import com.alibaba.fastjson.JSONObject;
 public class SortList {
 
     public static void main(String[] args) {
-        int[] list = new int[]{6, 1, 2, 7, 9, 3, 4, 5, 10, 8};
-        System.out.println(JSONObject.toJSONString(list));
-        quickSort(list, 0, list.length - 1);
-        System.out.println(JSONObject.toJSONString(list));
+        int[] list = new int[]{6, 1, 2, 7, 9, 3, 4, 5, 10, 8, 5};
+//        System.out.println(JSONObject.toJSONString(list));
+//        quickSort(list, 0, list.length - 1);
+//        System.out.println(JSONObject.toJSONString(list));
+
+
+        int[] result = new int[100];
+
+        for (int i = 0; i < list.length; i++) {
+            result[list[i]]++;
+        }
+
+        System.out.println(JSONObject.toJSONString(result));
+
 
     }
 
